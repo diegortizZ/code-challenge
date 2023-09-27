@@ -10,7 +10,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
   $registration_date = $_POST["date"];
   
   //antes de hacer el insert verifica que los numeros sean enteros
-  if(is_int($income) && is_int($expenses)){
+  if(filter_var($income, FILTER_VALIDATE_INT) !== false && filter_var($expenses, FILTER_VALIDATE_INT) !== false){
     $total = $income - $expenses;
 
     $insert = "INSERT INTO `finances` (`income`, `expenses`, `total`, `registration_date`) VALUES (?, ?, ?, ?)";
